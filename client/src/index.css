@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  color: #2a1810;
+  background: #f7f0e5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #f7f0e5;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: #fff9ef;
+  background: #8a4b32;
+}
+
+@keyframes devkar-marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.devkar-marquee-track {
+  animation: devkar-marquee-left 32s linear infinite;
+  will-change: transform;
+}

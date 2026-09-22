@@ -1,0 +1,213 @@
+Updated application flow
+Public customer features
+
+Customers can access these without login:
+
+Homepage
+Collections
+Product catalogue
+Product search
+Filters and sorting
+Product-details page
+Cart
+Wishlist stored on their device
+Coupons
+Guest checkout
+Razorpay
+Cash on delivery
+Custom-carving enquiry
+Reviews
+Order tracking using order number and phone/email
+Checkout information
+
+At checkout, the customer will enter:
+
+Full name
+Email address
+Mobile number
+Alternative mobile number
+Address
+Landmark
+City
+State
+PIN code
+Delivery instructions
+Payment method
+
+This customer information will be stored directly inside the order.
+
+That is important because an order must retain the exact delivery information used when it was placed.
+
+Revised database models
+
+We’ll build these models:
+
+Category
+Product
+Order
+Coupon
+Review
+CustomEnquiry
+Banner
+Blog
+Admin
+
+We don’t need a public customer account model.
+
+The Order model will contain guest information:
+
+customer: {
+  name,
+  email,
+  phone,
+  alternativePhone
+}
+
+And shipping details:
+
+shippingAddress: {
+  addressLine,
+  landmark,
+  city,
+  state,
+  postalCode
+}
+Cart storage
+
+Before checkout, the cart will be stored in:
+
+Redux Toolkit + localStorage
+
+This means the customer’s cart remains available after refreshing or reopening the website on the same device.
+
+After successful checkout, the backend creates a permanent MongoDB order.
+
+Customer order tracking
+
+Because there is no customer account, customers can track an order using:
+
+Order number + mobile number
+
+For example:
+
+Order number: DWC-20260906-1042
+Mobile number: 9876543210
+
+The API returns only safe order information after both values match.
+
+Admin authentication
+
+Admin login is still necessary.
+
+The admin flow will be:
+
+Admin login
+    ↓
+Secure JWT cookie
+    ↓
+Protected admin dashboard
+    ↓
+Manage products and orders
+
+Regular customers will never see this login.
+
+Updated Development Order
+
+We’ll proceed in this order:
+
+Category model
+Product model
+Product CRUD APIs
+Public product and collection APIs
+Frontend homepage
+Product catalogue
+Product-details page
+Redux cart with local storage
+Guest checkout form
+Order model and order creation
+Cash on delivery
+Razorpay payment and verification
+Guest order tracking
+Admin authentication
+Admin dashboard
+
+So our next step is now Category and Product models, not customer authentication.
+
+
+
+product APIs
+
+POST http://localhost:5000/api/v1/products
+
+GET http://localhost:5000/api/v1/products
+
+GET http://localhost:5000/api/v1/products?page=1&limit=12
+
+GET http://localhost:5000/api/v1/products?search=ganesha - search
+
+GET http://localhost:5000/api/v1/products?category=wooden-sculptures - Category filter
+
+GET http://localhost:5000/api/v1/products?minPrice=5000&maxPrice=20000 - Price filter
+
+GET http://localhost:5000/api/v1/products?sort=price_asc  - Sort by lowest price
+
+GET http://localhost:5000/api/v1/products?featured=true - Featured products
+
+GET http://localhost:5000/api/v1/products?category=wooden-sculptures&woodType=Teak Wood&inStock=true&sort=price_asc&page=1&limit=12  - Combined filters
+
+GET http://localhost:5000/api/v1/products/hand-carved-wooden-ganesha - Test product details 
+
+GET http://localhost:5000/api/v1/products/admin/all - Test the admin list 
+
+GET http://localhost:5000/api/v1/products/admin/all?status=draft  - Filter drafts: 
+
+PATCH http://localhost:5000/api/v1/products/PRODUCT_ID  - Update the product 
+
+DELETE http://localhost:5000/api/v1/products/PRODUCT_ID - Archive the product  
+
+
+POST http://localhost:5000/api/v1/orders  - cod order
+POST http://localhost:5000/api/v1/orders
+
+GET http://localhost:5000/api/v1/orders/admin/all
+
+GET http://localhost:5000/api/v1/orders/admin/all?page=1&limit=10
+GET http://localhost:5000/api/v1/orders/admin/all?orderStatus=placed
+GET http://localhost:5000/api/v1/orders/admin/all?paymentMethod=cod
+GET http://localhost:5000/api/v1/orders/admin/all?search=Gaurav
+GET http://localhost:5000/api/v1/orders/admin/all?sort=totalHighToLow
+
+GET http://localhost:5000/api/v1/orders/admin/ORDER_MONGODB_ID
+GET http://localhost:5000/api/v1/orders/admin/DW-ORDER-NUMBER
+
+PATCH http://localhost:5000/api/v1/orders/admin/ORDER_ID/status
+PATCH http://localhost:5000/api/v1/orders/admin/ORDER_ID/tracking
+
+POST http://localhost:5000/api/v1/orders/track 
+
+POST http://localhost:5000/api/v1/orders/razorpay/create
+
+
+
+POST http://localhost:5000/api/v1/enquiries/track
+
+GET http://localhost:5000/api/v1/enquiries/admin/all 
+
+GET http://localhost:5000/api/v1/enquiries/admin/all?page=1&limit=10&status=new&sort=newest 
+
+GET http://localhost:5000/api/v1/enquiries/admin/all?search=gaurav 
+
+GET http://localhost:5000/api/v1/enquiries/admin/ENQUIRY_ID
+
+GET http://localhost:5000/api/v1/enquiries/admin/DWE-1789118989035-D4E07F 
+
+PATCH http://localhost:5000/api/v1/enquiries/admin/ENQUIRY_ID/status
+ 
+ PATCH http://localhost:5000/api/v1/enquiries/admin/ENQUIRY_ID/quote
+
+PATCH http://localhost:5000/api/v1/enquiries/admin/ENQUIRY_ID/note
+
+PATCH http://localhost:5000/api/v1/enquiries/admin/ENQUIRY_ID/customer
+
+
+GET http://localhost:5000/api/v1/admin/dashboard

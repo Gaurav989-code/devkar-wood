@@ -1,0 +1,101 @@
+pages/
+├── storefront/
+│   ├── Home.jsx
+│   ├── Collections.jsx
+│   ├── Products.jsx
+│   ├── ProductDetails.jsx
+│   ├── Cart.jsx
+│   ├── Checkout.jsx
+│   ├── OrderSuccess.jsx
+│   ├── TrackOrder.jsx
+│   ├── About.jsx
+│   └── Contact.jsx
+├── admin/
+│   ├── AdminLogin.jsx
+│   ├── Dashboard.jsx
+│   ├── Products.jsx
+│   ├── Categories.jsx
+│   └── Orders.jsx
+└── NotFound.jsx
+
+
+Your website is functionally close to complete, but it is not fully production-ready yet.
+
+Already completed:
+
+* Public storefront and collections
+* Product listing, filtering, search, sorting and pagination
+* Product details, wishlist and cart
+* Guest checkout
+* COD and Razorpay payment flows
+* Order success, tracking and order history
+* Custom-carving enquiry with image upload and tracking
+* About, Contact, FAQ, Wood Care and Shipping/Returns pages
+* Admin authentication and protected routes
+* Admin dashboard
+* Product, category, order and enquiry management
+* Product/category images through ImageKit
+* Responsive navigation, footer and animations
+* Basic metadata and social-sharing SEO
+
+Before launch, finish these items:
+
+1. Add the remaining footer pages:
+
+   * `/privacy`
+   * `/terms`
+
+2. Verify every workflow end-to-end:
+
+   * COD order and stock reduction
+   * Successful, failed and cancelled Razorpay payments
+   * Order tracking
+   * Enquiry creation and tracking
+   * Product/category create, edit, image upload and archive
+   * Admin logout and expired-session handling
+
+3. Add production configuration:
+
+   * Production MongoDB URL
+   * Razorpay live keys
+   * ImageKit credentials
+   * Email credentials
+   * Strong JWT secret
+   * Correct frontend/API URLs
+   * Production CORS and secure-cookie settings
+
+4. Complete technical SEO:
+
+   * Route-specific titles and descriptions
+   * `robots.txt`
+   * `sitemap.xml`
+   * Product structured data
+   * Unique product image alt text
+   * Correct canonical production domain
+
+5. Add operational protections:
+
+   * Request rate limiting
+   * Input sanitisation
+   * Enquiry/order spam protection
+   * Central logging and monitoring
+   * Database backups
+   * Razorpay webhook verification
+
+6. Test quality:
+
+   * Mobile, tablet and desktop layouts
+   * Chrome, Edge, Firefox and Safari
+   * Slow network and failed API states
+   * Accessibility and keyboard navigation
+   * Lighthouse performance
+   * Broken links and missing images
+
+7. Deploy:
+
+   * Frontend to Vercel/Netlify
+   * Backend to Render/Railway
+   * Database on MongoDB Atlas
+   * Configure custom domain and HTTPS
+
+So the development stage is roughly **90–95% complete**. The primary customer and admin features exist; remaining work is mainly legal pages, security hardening, SEO refinement, testing and deployment.
